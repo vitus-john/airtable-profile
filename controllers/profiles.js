@@ -1,4 +1,12 @@
-const { v7: uuidv7 } = require("uuid");
+let uuidv7;
+
+async function getUuidV7() {
+  if (!uuidv7) {
+    ({ v7: uuidv7 } = await import("uuid"));
+  }
+
+  return uuidv7;
+}
 
 const Profile = require("../models/Profile");
 const { enrichProfile } = require("../services/profileEnrichment");
@@ -49,9 +57,10 @@ async function createProfile(req, res) {
     }
 
     const enrichedProfile = await enrichProfile(normalizedName);
+    const uuidFactory = await getUuidV7();
 
     const createdProfile = await Profile.create({
-      id: uuidv7(),
+      id: uuidFactory(),
       name: normalizedName,
       normalized_name: normalizedName,
       ...enrichedProfile,
