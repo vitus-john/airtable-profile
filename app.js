@@ -6,8 +6,7 @@ const profilesRouter = require("./routes/profiles");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Vercel/edge proxies forward client IP via proxy headers.
-// Trust the first proxy hop so req.ip is computed correctly.
+// Trust proxy for rate limiting
 app.set("trust proxy", 1);
 
 require("./config/db_conn");
