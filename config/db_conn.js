@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // MongoDB connection
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = process.env.HNG_DATABASE_MONGODB_URI;
 mongoose.connect(mongoURI, {
  serverSelectionTimeoutMS: 50000 // Increase timeout
 })

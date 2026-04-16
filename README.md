@@ -6,8 +6,8 @@ Profile Intelligence Service built with Node.js, Express, and MongoDB.
 
 Set this after deployment:
 
-```
-https://yourapp.domain.app
+```link
+https://airtable-profile.vercel.app
 ```
 
 ## Features
@@ -29,7 +29,7 @@ https://yourapp.domain.app
 Request body:
 
 ```json
-{ "name": "ella" }
+{ "name": "john" }
 ```
 
 Success (201):
@@ -38,16 +38,16 @@ Success (201):
 {
   "status": "success",
   "data": {
-    "id": "01963ef7-f2f0-7f5f-8e27-13d5e1a4cf40",
-    "name": "ella",
-    "gender": "female",
-    "gender_probability": 0.99,
-    "sample_size": 1234,
-    "age": 46,
-    "age_group": "adult",
-    "country_id": "DRC",
-    "country_probability": 0.85,
-    "created_at": "2026-04-01T12:00:00.000Z"
+    "id": "019d93b4-8275-7206-b7ed-39b63d82afdb",
+    "name": "john",
+    "gender": "male",
+    "gender_probability": 1,
+    "sample_size": 2692560,
+    "age": 75,
+    "age_group": "senior",
+    "country_id": "NG",
+    "country_probability": 0.07613817567167579,
+    "created_at": "2026-04-16T00:32:53.877Z"
   }
 }
 ```
@@ -58,7 +58,18 @@ If profile already exists (200):
 {
   "status": "success",
   "message": "Profile already exists",
-  "data": { "...existing profile...": true }
+  "data": {
+    "id": "019d93b4-8275-7206-b7ed-39b63d82afdb",
+    "name": "john",
+    "gender": "male",
+    "gender_probability": 1,
+    "sample_size": 2692560,
+    "age": 75,
+    "age_group": "senior",
+    "country_id": "NG",
+    "country_probability": 0.07613817567167579,
+    "created_at": "2026-04-16T00:32:53.877Z"
+  }
 }
 ```
 
@@ -67,6 +78,24 @@ If profile already exists (200):
 `GET /api/profiles/:id`
 
 Success (200): returns full stored profile.
+
+```json
+{
+  "status": "success",
+  "data": {
+    "id": "019d93b4-8275-7206-b7ed-39b63d82afdb",
+    "name": "john",
+    "gender": "male",
+    "gender_probability": 1,
+    "sample_size": 2692560,
+    "age": 75,
+    "age_group": "senior",
+    "country_id": "NG",
+    "country_probability": 0.07613817567167579,
+    "created_at": "2026-04-16T00:32:53.877Z"
+  }
+}
+```
 
 ### 3. Get All Profiles
 
@@ -87,14 +116,14 @@ Success (200):
 ```json
 {
   "status": "success",
-  "count": 2,
+  "count": 1,
   "data": [
     {
-      "id": "id-1",
-      "name": "emmanuel",
+      "id": "019d93b4-8275-7206-b7ed-39b63d82afdb",
+      "name": "john",
       "gender": "male",
-      "age": 25,
-      "age_group": "adult",
+      "age": 75,
+      "age_group": "senior",
       "country_id": "NG"
     }
   ]
@@ -131,20 +160,20 @@ External API validation errors:
 
 ## Local Setup
 
-1. Install dependencies:
+1.Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Create `.env` file:
+2.Create `.env` file:
 
 ```env
 PORT=5000
-MONGODB_URI=mongodb://127.0.0.1:27017/hng-stage1
+HNG_DATABASE_MONGODB_URI="mongodb+srv://Vercel-Admin-HNG_DATABASE:gxh4Wfw3KakckvlZ@hng-database.oj1yp94.mongodb.net/?retryWrites=true&w=majority"
 ```
 
-3. Start server:
+3.Start server:
 
 ```bash
 npm start
